@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/role/type.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 角色信息
+message BaseRole {
+  // 角色Id
+  // @gotags: json:"roleId,string"
+  relo.core.role.Type role = 2;
+  // 角色名
+  string name = 3;
+}

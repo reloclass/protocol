@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package relo.core.client;
+
+option go_package = "github.com/reloclass/core/client";
+
+
+enum UpdateType {
+  // 未知
+  UPDATE_TYPE_UNSPECIFIED = 0;
+
+  // 提示更新
+  TIP = 1;
+  // 静默更新
+  SILENT = 2;
+  // 强制更新
+  FORCE = 3;
+}

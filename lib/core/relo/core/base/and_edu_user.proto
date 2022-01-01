@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package relo.core.base;
+
+option go_package = "github.com/reloclass/core/base";
+
+
+// 和教育用户信息
+message AndEduUser {
+  // 用户Id
+  // @gotags: json:"user,string"
+  int64 user = 2;
+  // 属性
+  Attributes Attributes = 3;
+}
+
+message Attributes {
+  // 手机号
+  string phone = 2;
+  // 昵称
+  // @gotags: json:"nickName"
+  string nick_name = 3;
+}
+

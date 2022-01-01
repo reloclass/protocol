@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.cloudfile;
+
+option go_package = "github.com/reloclass/core/cloudfile";
+
+
+// 文件操作类型
+enum OperationType {
+  // 保留
+  RESERVE = 0;
+
+  // 直接下载
+  DOWNLOAD = 1;
+  // 打开
+  OPEN = 2;
+  // 编辑
+  EDIT = 3;
+}

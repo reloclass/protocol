@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package relo.protocol.course;
+
+import "relo/core/course/type.proto";
+import "relo/core/course/class_mode.proto";
+import "relo/protocol/vo/teaching_material.proto";
+
+option go_package = "github.com/reloclass/protocol/course;course";
+
+
+// 添加课程请求
+message UpdateReq {
+  // 课程编号
+  // @gotags: param:"id" json:"id,string" validate:"required"
+  int64 id = 2;
+  // 课程名称
+  // @gotags: validate:"required,without_special_symbol,min=2,max=30"
+  string name = 3;
+  // 课程类型
+  // @gotags: validate:"required_with=1 2 3 4"
+  core.course.Type type = 4;
+  // 封面
+  // @gotags: validate:"omitempty"
+  string cover = 5;
+  // 创建人
+  // @gotags: json:"creatorId,string" validate:"required"
+  int64 creator_id = 6;
+  // 介绍
+  // @gotags: validate:"omitempty,max=10000"
+  string info = 7;
+  // 上课模式
+  // @gotags: default:"1" json:"classMode" validate:"omitempty,oneof=1 2 3"
+  core.course.ClassMode class_mode = 8;
+  // 课程教学资料
+  repeated vo.TeachingMaterial materials = 9;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core.client;
+
+option go_package = "github.com/reloclass/core/client";
+
+
+enum UpdateFileType {
+  // 未知
+  UPDATE_FILE_TYPE_UNSPECIFIED = 0;
+
+  // 补丁包
+  PATCH = 1;
+  // 安装包
+  INSTALLATION = 2;
+}

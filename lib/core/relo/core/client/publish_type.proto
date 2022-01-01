@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core.client;
+
+option go_package = "github.com/reloclass/core/client";
+
+
+// 发布类型
+enum PublishType {
+  // 立即发布
+  RIGHT_NOW = 0;
+  // 仅保存
+  SAVE = 1;
+}

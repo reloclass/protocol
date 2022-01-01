@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+import "relo/protocol/vo/user.proto";
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+
+// 添加用户请求
+message AddReq {
+  // 用户列表
+  // @gotags: json:"users,omitempty"
+  repeated User users = 2;
+}
+
+message User {
+  // 手机号
+  // @gotags: json:"phone" validate:"required,printascii,mobile"
+  string phone = 2;
+  // 昵称
+  // @gotags: json:"nickname"
+  string nick_name = 3;
+}
+
+// 批量添加用户响应
+message BatchAddRsp {
+  // 文件重复用户
+  // @gotags: json:"repeatUsers"
+  repeated relo.protocol.vo.User repeat_users = 2;
+  // 文件信息错误用户
+  // @gotags: json:"errUsers"
+  repeated relo.protocol.vo.User err_users = 3;
+  // 文件中已注册用户
+  // @gotags: json:"existUsers"
+  repeated relo.protocol.vo.User exist_users = 4;
+}
+
+
+message AddUserReq{
+  // @gotags: json:"phone"
+  string phone = 1; // 手机号
+  // @gotags: json:"nickname"
+  string nickname = 2; // 昵称
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 3; // 密码
+  // @gotags:  json:"code"   validate:"omitempty"
+  string code = 4; // 验证码
+}
+
+message AddUserRsp{
+  // @gotags: json:"newAdd"
+  bool new_add = 1; // 是否新增
+  // @gotags: json:"userInfo"
+  vo.UserInfo userInfo = 2; // 用户
+}

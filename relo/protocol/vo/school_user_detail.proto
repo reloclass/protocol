@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/user/status.proto";
+
+import "relo/core/role/base.proto";
+import "relo/protocol/vo/user_attendance_statistics.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 学校用户详细信息
+message SchoolUserDetail {
+  // @gotags: json:"phone" validate:"required,mobile"
+  string phone = 2;
+  // @gotags: json:"name" validate:"required,min=2,max=32"
+  string name = 3;
+  // @gotags: json:"index" validate:"omitempty"
+  int32  index = 4;
+
+  // 用户id
+  // @gotags: json:"userId,string"
+  int64 user_id = 5;
+  // 更新时间
+  // @gotags: json:"updated_at"
+  string updated = 6;
+  // 图像链接
+  // @gotags:  json:"avatarUrl"
+  string avatar_url = 7;
+  // 状态
+  relo.core.user.Status status = 8;
+  // 角色信息
+  repeated relo.core.role.Base roles = 9;
+  // 出勤统计
+  // @gotags: json:"attendanceStatistics"
+  UserAttendanceStatistics attendance_statistics = 10;
+}

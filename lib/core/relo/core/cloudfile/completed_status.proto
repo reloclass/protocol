@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core.cloudfile;
+
+option go_package = "github.com/reloclass/core/cloudfile";
+
+
+// 文件上传状态
+enum CompletedStatus {
+  // 未完成
+  NO = 0;
+  // 已完成
+  YES = 1;
+}

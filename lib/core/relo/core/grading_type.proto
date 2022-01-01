@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package relo.core;
+
+option go_package = "github.com/reloclass/core";
+
+
+// 评分类型
+enum GradingType {
+  // 无评分
+  GRADING_NO = 0;
+  // 百分制
+  GRADING_HUNDRED_MARK = 1;
+  // 等级制
+  GRADING_ABCD = 2;
+  //  十分制
+  GRADING_TEN_MARK = 3;
+}

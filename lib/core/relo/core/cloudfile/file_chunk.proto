@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package relo.core.cloudfile;
+
+option go_package = "github.com/reloclass/core/cloudfile";
+
+
+//  分块上传块信息
+message ChunkInfo {
+  //  分块序列号
+  // @gotags: json:"partNumber" validate:"required"
+  int64 part_number = 2;
+  //  分块上传返回校验码
+  // @gotags: json:"etag" validate:"required"
+  string e_tag = 3;
+}
+
+//  分块上传数据
+message ChunkData  {
+  //  文件编号
+  // @gotags: json:"fileId" validate:"required,len=20"
+  string file_id = 2;
+  // Type 文件所属类型
+  // @gotags: json:"type" validate:"required,oneof=course public private resource"
+  string type = 3;
+}

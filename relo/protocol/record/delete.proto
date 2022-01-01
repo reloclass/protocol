@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package relo.protocol.record;
+
+option go_package = "github.com/reloclass/protocol/record;record";
+
+// 删除录课资源请求
+message DeleteReq {
+  // 录课资源编号
+  // @gotags: param:"id" validate:"required"
+  int64 id = 2;
+}

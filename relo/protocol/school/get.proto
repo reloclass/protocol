@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package relo.protocol.school;
+
+import "relo/protocol/vo/school.proto";
+
+option go_package = "github.com/reloclass/protocol/school;school";
+
+// 分页获取学校信息请求
+message GetsByPagingReq{
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: default:"desc" query:"sortOrder" validate:"oneof=desc DESC asc ASC"
+  string order = 5;
+  // 排序字段
+  // @gotags: default:"updated_at" query:"sortField" validate:"oneof=id created_at updated_at"
+  string sort = 6;
+}
+
+
+// 分页获取学校信息响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+
+  // 数据
+  repeated vo.School items = 3;
+}
+
+
+// 通过学校id获取学校信息请求
+message GetByIdReq {
+  // 学校编号
+  // @gotags: param:"id"
+  int64 id = 2;
+}

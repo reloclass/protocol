@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core;
+
+option go_package = "github.com/reloclass/core";
+
+
+// 作业提交状态
+enum HomeworkSubmittedState {
+  // 尚未提交
+  NOT = 0;
+  // 已经提交
+  ALREADY = 1;
+  // 保存
+  SAVE = 2;
+}

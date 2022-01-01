@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+// 文件信息
+message DirFile {
+  // 文件类型
+  // 目录：1
+  // 文件：2
+  int32 type = 2;
+  // Path 文件路径
+  string path = 3;
+  // 更新时间
+  // @gotags: json:"updateTime"
+  int64 update_time = 4;
+}

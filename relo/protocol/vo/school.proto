@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/school/status.proto";
+import "relo/core/school/school_course.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 学校信息
+message School {
+  // 学校编号
+  // @gotags: json:"id,string"
+  int64 id = 2;
+  // 学校名
+  // @gotags: json:"name"
+  string name = 3;
+  // 学校状态
+  // @gotags: json:"status"
+  core.school.Status status = 4;
+  // 负责人手机号
+  // @gotags: json:"principalPhone"
+  string principal_phone = 5;
+  // 负责人手机号
+  // @gotags: json:"principalName"
+  string principal_name = 6;
+  // 文件编号
+  // @gotags: json:"logoUrl"
+  string logo_url = 7;
+  // 详细地址
+  // @gotags: json:"address"
+  string address = 8;
+  // 详细地址
+  // @gotags: json:"areaCode"
+  string area_code = 9;
+  // 经度
+  // @gotags: json:"longitude"
+  float longitude = 10;
+  // 纬度
+  // @gotags: json:"latitude"
+  float latitude = 11;
+  // 教师人数
+  // @gotags: json:"teacherNumber"
+  int32 teacher_number = 12;
+  // 学生人数
+  // @gotags: json:"studentNumber"
+  int32 student_number = 13;
+  // 区域地址
+  // @gotags：json:"areaAddress"
+  string area_address = 14;
+  // 学校logo设置
+  // @gotags：json:"logoFileId"
+  string logo_file_id = 15;
+  // 开设课程
+  // @gotags: json:"setUpCourses"
+  repeated core.school.Course courses = 16;
+}
+
+// 学校基本信息
+message BaseSchool {
+  // 学校id
+  // @gotags: json:"id,string"
+  int64 id = 2;
+  // 学校名
+  string name = 3;
+  // 学校logoUrl
+  // @gotags: json:"logoUrl"
+  string logo_url = 4;
+}

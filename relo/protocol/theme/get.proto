@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package relo.protocol.theme;
+
+import "relo/protocol/vo/theme.proto";
+
+option go_package = "github.com/reloclass/protocol/theme;theme";
+
+
+// 分页获取主题信息请求
+message GetsByPagingReq{
+  // 当前页
+  // @gotags: query:"page" default:"1" validate:"min=1"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: query:"perPage" default:"20" validate:"min=1"
+  int32 size = 3;
+  // 排序规则
+  // @gotags: query:"sortOrder" default:"DESC" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"
+  string order = 5;
+  // 排序字段
+  // @gotags: query:"sortField" default:"created_at" validate:"oneof=created_at updated_at"
+  string sort = 6;
+}
+
+// 分页获取客户端信息响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+
+  // 数据
+  repeated vo.Theme items = 3;
+}
+
+
+
+
+
+

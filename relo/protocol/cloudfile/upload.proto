@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package relo.protocol.cloudfile;
+
+import "relo/core/cloudfile/storage_state.proto";
+
+option go_package = "github.com/reloclass/protocol/cloudfile;cloudfile";
+
+// 文件上传请求
+message UploadReq {
+  // 文件编号
+  // @gotags: query:"fileId" json:"fileId" validate:"omitempty,len=20"
+  string file_id = 2;
+  // 文件名字
+  // @gotags:  query:"filename" json:"filename:" validate:"omitempty,without_special_symbol,filename"
+  string file_name = 3;
+  // 文件大小
+  // @gotags: query:"dataSize" json:"dataSize" validate:"required"
+  int64 data_size = 4;
+  // 文件上传类型
+  // @gotags: query:"dirType" json:"dirType" validate:"required,oneof=system resource public private"
+  string dir_type = 5;
+  // 学校编号
+  // @gotags: query:"schoolId" json:"schoolId" validate:"omitempty"
+  int64 school_id = 6;
+  // 上传用户id
+  // @gotags: query:"creatorId" json:"creatorId" validate:"omitempty"
+  int64 creator_id = 7;
+}
+
+// 文件上传响应
+message UploadRsp {
+  // 文件编号
+  // @gotags: json:"fileId"
+  string file_id = 2;
+  // 上传地址
+  // @gotags: json:"url"
+  string url = 3;
+  // 云盘状态
+  // @gotags: json:"state"
+  core.cloudfile.StorageState state = 4;
+}
+
+
+// 完成上传请求
+message CompleteUploadReq {
+  // 文件编号
+  // @gotags: param:"fileId" json:"fileId"
+  string file_id = 2;
+}
+

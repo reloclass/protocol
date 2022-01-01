@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package relo.protocol.school;
+
+import "relo/core/school/status.proto";
+import "relo/core/school/school_course.proto";
+
+option go_package = "github.com/reloclass/protocol/school;school";
+
+
+// 更新学校请求
+message UpdateReq {
+  // 学校编号
+  // @gotags: param:"id"
+  int64 id = 2;
+  // 学校名
+  // @gotags: json:"name" validate:"required,min=2,max=32"
+  string name = 3;
+  // 学校状态
+  // @gotags: json:"status" validate:"required_with=0 1"
+  core.school.Status status = 4;
+  // 负责人手机号
+  // @gotags: json:"principalPhone" validate:"required,mobile"
+  string principal_phone = 5;
+  // 负责人手机号
+  // @gotags: json:"principalName" validate:"required,min=2,max=32"
+  string principal_name = 6;
+  // 文件编号
+  // @gotags: json:"fileId" validate:"omitempty,len=20"
+  string file_id = 7;
+  // 详细地址
+  // @gotags: json:"address" validate:"omitempty,min=2,max=255"
+  string address = 8;
+  // 详细地址
+  // @gotags: json:"areaCode" validate:"required,number,len=6"
+  string area_code = 9;
+  // 经度
+  // @gotags: json:"longitude" validate:"omitempty"
+  float longitude = 10;
+  // 纬度
+  // @gotags: json:"latitude" validate:"omitempty"
+  float latitude = 11;
+  // 验证码
+  // @gotags: json:"verificationCode" validate:"required"
+  string verification_code = 12;
+  // 开设课程
+  // @gotags: json:"setUpCourses" validate:"required"
+  repeated core.school.Course courses = 13;
+}
+
+
+// 更新学校状态请求
+message UpdateStatusReq {
+  // 学校编号
+  // @gotags: param:"id"
+  int64 id = 2;
+  // 学校状态
+  // @gotags: json:"status" validate:"required_with=0 1"
+  core.school.Status status = 3;
+  // 密码
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 4;
+}

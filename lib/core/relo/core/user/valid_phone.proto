@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package relo.core.user;
+
+option go_package = "github.com/reloclass/core/user";
+
+
+// 有效手机号
+message ValidPhone {
+  // 手机号
+  // @gotags: json:"phone" validate:"omitempty,mobile"
+  string phone = 2;
+}

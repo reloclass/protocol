@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package relo.protocol.lesson;
+
+import "relo/protocol/vo/es_lesson.proto";
+import "relo/core/lesson/status.proto";
+import "relo/core/course/class_mode.proto";
+import "relo/core/course/type.proto";
+
+option go_package = "github.com/reloclass/protocol/lesson;lesson";
+
+
+// 分页获取有课节安排的日期请求
+message GetsDaysReq {
+  // StartTime 开始时间条件
+  // @gotags: query:"startTime" json:"startTime" validate:"required"
+  string start_time = 6;
+  // EndTime 结束时间条件
+  // @gotags: query:"endTime" json:"endTime" validate:"required"
+  string end_time = 7;
+  // 要查用户的编号
+  // @gotags: query:"userId" json:"userId,string" validate:"required"
+  int64 user_id = 8;
+}
+
+// 分页获取有课节安排的日期响应
+message GetsDaysRsp {
+  // 日期
+  repeated string dates = 2;
+}
+
+// 获取课节请求
+message GetReq {
+  // 课节编号
+  // @gotags: param:"id"
+  int64 id = 2;
+}
+
+
+// 分页获取课节信息请求
+message GetsByPagingReq{
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: default:"desc" query:"sortOrder" validate:"oneof=desc DESC asc ASC"
+  string order = 5;
+  // 排序字段
+  // @gotags: default:"created_at" query:"sortField" validate:"oneof=updated_at created_at"
+  string sort = 6;
+
+  // 课程编号
+  // @gotags: query:"courseId" json:"courseId,string"
+  int64 course_id = 7;
+  // 主讲老师
+  // @gotags: query:"teacherKey" json:"teacherKey"
+  string teacher_key = 8;
+  // 助教
+  // @gotags: query:"assistantKey" json:"assistantKey"
+  string assistant_key = 9;
+  // 课节名称
+  // @gotags: query:"nameKey" json:"nameKey"
+  string name_key = 10;
+  // 开始时间条件
+  // @gotags: query:"startTime" json:"startTime"
+  string start_time = 11;
+  // 结束时间条件
+  // @gotags: query:"endTime" json:"endTime"
+  string end_time = 12;
+  // 学校编号
+  // @gotags: query:"schoolId" json:"schoolId"
+  int64 school_id = 13;
+  // 课程状态
+  // @gotags: query:"statuses" json:"statuses"
+  repeated core.lesson.Status statuses = 14;
+  // 上课模式
+  // @gotags: query: "classMode" json:"classMode" validate:"omitempty,oneof=1 2 3"
+  core.course.ClassMode class_mode = 15;
+  // 课程类型
+  // @gotags: query:"type"
+  core.course.Type type = 16;
+}
+
+// 分页获取课节信息响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+
+  // 数据
+  repeated vo.EsLesson items = 3;
+}
+
+// 获取课节总数请求
+message GetCountReq {
+  // 课程编号
+  // @gotags: query:"courseId" json:"courseId,string"
+  int64 course_id = 2;
+  // 学校编号
+  // @gotags: query:"schoolId" json:"schoolId,string"
+  int64 school_id = 3;
+}

@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+import "relo/protocol/vo/user.proto";
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+// 分页获取主题信息请求
+message GetsByPagingReq{
+  // 当前页
+  // @gotags: query:"page" default:"1" validate:"min=1"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: query:"perPage" default:"20" validate:"min=1"
+  int32 size = 3;
+  // 查询关键字
+  // @gotags: json:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: query:"sortOrder" default:"DESC" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"
+  string order = 5;
+  // 排序字段
+  // @gotags: query:"sortField" default:"created_at" validate:"oneof=created_at updated_at"
+  string sort = 6;
+}
+
+// 分页获取用户响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+
+  // 数据
+  repeated vo.User items = 3;
+}
+
+
+message UserReq {// 参数2先1
+  // @gotags: json:"id"
+  int64 id = 1; // 用户ID
+  // @gotags: json:"phone"
+  string phone = 2; // 手机号
+}
+
+message UserRsp {
+  // @gotags: json:"userInfo"
+  vo.UserInfo userInfo = 1; // 用户ID
+}
+
+
+
+message UsersReq {
+  // @gotags: default:"1" json:"page" validate:"min=1"
+  int32 page = 1; // 当前页数
+  // @gotags:  default:"20" json:"perPage" validate:"min=1"
+  int32 per_page = 2; // 每页个数
+  // @gotags: json:"keyword"
+  string keyword = 3; // 查询关键字
+  // @gotags: default:"DESC" json:"sortOrder" validate:"oneof=asc ASC ascending ASCENDING desc DESC descending DESCENDING"
+  string sort_order = 4; // 排序查询
+  // @gotags: default:"updated_at" json:"sortField" validate:"oneof=id created_at updated_at"
+  string sort_field = 5; // 排序字段
+}
+
+message UsersRsp {
+  // @gotags: json:"totalCount"
+  int64 total_count = 1;
+  // @gotags: json:"users"
+  repeated vo.UserInfo users = 2; // 用户
+}

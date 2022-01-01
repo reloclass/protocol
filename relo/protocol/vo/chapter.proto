@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/lecture/type.proto";
+import "relo/protocol/vo/lecture_content.proto";
+import "relo/protocol/vo/lecture.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 讲次章节信息
+message Chapter {
+  // 编号
+  // @gotags: json:"id,string"
+  int64 id = 2;
+  // 课程编号
+  // @gotags: json:"courseId,string"
+  int64 course_id = 3;
+  // 讲次类型
+  // @gotags: json:"type"
+  core.lecture.Type type = 4;
+  // 章节编号
+  // @gotags: json:"parentId,string"
+  int64 parent_id = 5;
+  // 顺序
+  // @gotags: default:"0" json:"sequence"
+  int32 sequence = 6;
+  // 名称
+  // @gotags: json:"name"
+  string name = 7;
+  // 简介
+  // @gotags: json:"profile"
+  string profile = 8;
+  // 创建时间
+  // @gotags: json:"createdAt"
+  string created = 9;
+  // 更新时间
+  // @gotags: json:"updatedAt"
+  string updated = 10;
+  // 章节讲次信息
+  repeated vo.Lecture lectures = 11;
+}

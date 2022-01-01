@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package relo.core.user;
+
+option go_package = "github.com/reloclass/core/user";
+
+
+// 用户类型
+enum Type {
+  // 未知类型
+  TYPE_UNSPECIFIED = 0;
+
+  // 后台用户
+  CONSOLE = 1;
+  // 教师
+  TEACHER = 2;
+  // 学生
+  STUDENT = 3;
+  // 游客
+  TOURIST = 4;
+}

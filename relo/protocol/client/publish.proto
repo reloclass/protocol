@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package relo.protocol.client;
+
+option go_package = "github.com/reloclass/protocol/client;client";
+
+
+// 发布请求
+message PublishReq {
+  // 客户端信息编号
+  // @gotags: param:"id" validate:"required"
+  int64 id = 1;
+}
+
+// 发布响应
+message PublishRsp {
+  // 客户端信息编号
+  // @gotags: json:"affected,string"
+  int64 affected = 1;
+}

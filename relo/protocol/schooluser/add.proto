@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package relo.protocol.schooluser;
+
+import "relo/protocol/vo/school_user_detail.proto";
+import "relo/core/schooluser/registration_type.proto";
+
+option go_package = "github.com/reloclass/protocol/schooluser;schooluser";
+
+// 添加学校用户请求
+message AddReq {
+  // 用户
+  // @gotags: json:"users"
+  repeated relo.protocol.vo.SchoolUserDetail users = 2;
+  // 代注册
+  // @gotags:  json:"register" validate:"omitempty,required_with= 0 1"
+  relo.core.schooluser.RegistrationType register = 3;
+}
+
+// 添加学校用户响应
+message AddRsp {
+  // 未注册用户
+  // @gotags: json:"unregisterUsers"
+  repeated relo.protocol.vo.SchoolUserDetail unregister_users = 2;
+  // 已存在的用户
+  // @gotags: json:"existUsers"
+  repeated relo.protocol.vo.SchoolUserDetail exist_users = 3;
+}
+
+// 批量添加用户请求
+message BatchAddRsp {
+  // 未注册用户
+  // @gotags: json:"unregisterUsers"
+  repeated relo.protocol.vo.SchoolUserDetail unregister_users = 2;
+  // 已存在的用户
+  // @gotags: json:"existUsers"
+  repeated relo.protocol.vo.SchoolUserDetail exist_users = 3;
+  // 重复的用户
+  // @gotags: json:"repeatUsers"
+  repeated relo.protocol.vo.SchoolUserDetail repeat_users = 4;
+  // 已存在的用户
+  // @gotags: json:"errUsers"
+  repeated relo.protocol.vo.SchoolUserDetail err_users = 5;
+}

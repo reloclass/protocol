@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package relo.protocol.openebus;
+
+option go_package = "github.com/reloclass/protocol/openebus;openebus";
+
+// 加密请求参数
+message EncryptReq {
+  // 手机号
+  // @gotags: json:"phone" validate:"required,mobile"
+  string phone = 2;
+  // 课节编号
+  // @gotags: json:"courseTimeId,string"
+  int64 course_time_id = 3;
+}
+
+// 加密响应参数
+message EncryptRes {
+  // 手机号
+  // @gotags: json:"phone" validate:"required,mobile"
+  string phone = 2;
+  // 课节编号
+  // @gotags: json:"courseTimeId"
+  string course_time_id = 3;
+}

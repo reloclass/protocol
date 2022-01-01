@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+import "relo/protocol/vo/user.proto";
+import "relo/protocol/vo/school.proto";
+import "relo/core/menu/auth.proto";
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+
+// 登录请求
+message LoginReq {
+  // @gotags: json:"phone" validate:"required,printascii,mobile"
+  string phone = 1; // 手机号
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 2; // 密码
+}
+
+// 登录响应
+message LoginRsp {
+  // @gotags: json:"userInfo"
+  relo.protocol.vo.UserInfo userInfo = 1; // 用户
+}
+
+
+// 管理员登录请求
+message AdminLoginReq {
+  // 手机号
+  // @gotags: json:"name" validate:"required,printascii"
+  string name = 2;
+  // 密码
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 3;
+}
+
+// 管理员登录响应
+message AdminLoginRsp {
+  // token
+  string token = 2;
+  // 服务器时间
+  // @gotags: json:"serverTime"
+  int64 server_time = 3;
+}
+
+message BackendLoginRsp {
+  // token
+  // @gotags: json:"token"
+  string token = 2;
+  // 服务器时间
+  // @gotags: json:"serverTime"
+  int64 server_time = 3;
+  // 用户信息
+  // @gotags: json:"user"
+  relo.protocol.vo.UserInfo user = 4;
+  // 学校信息
+  // @gotags: json:"school"
+  relo.protocol.vo.BaseSchool school = 5;
+  // 菜单权限
+  // @gotags: json:"auth"
+  repeated relo.core.menu.Auth auth = 6;
+  // 是否第一次登陆
+  // @gotags: json:"firstLogin"
+  bool first_login = 7;
+}
+
+// 客户端登录响应
+message ClientLoginRsp {
+  // token
+  // @gotags: json:"token"
+  string token = 2;
+  // 服务器时间
+  // @gotags: json:"serverTime"
+  int64 server_time = 3;
+  // 用户信息
+  // @gotags: json:"user"
+  relo.protocol.vo.UserInfo user = 4;
+  // 是否第一次登陆
+  // @gotags: json:"firstLogin"
+  bool first_login = 7;
+}
+
+// 和教育登录请求
+message LoginByAndEduReq {
+  // ticket
+  // @gotags: json:"ticket" validate:"required"
+  string ticket = 2;
+}
