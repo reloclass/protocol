@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package relo.core.client;
+
+option go_package = "github.com/reloclass/core/client";
+
+
+enum Status {
+  // 未知
+  STATUS_UNSPECIFIED = 0;
+
+  // 等待发布
+  WAIT = 1;
+  // 生效中
+  ENABLE = 2;
+  // 失效
+  DISABLE = 3;
+}

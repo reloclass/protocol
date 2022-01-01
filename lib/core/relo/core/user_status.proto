@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package relo.core;
+
+option go_package = "github.com/reloclass/core";
+
+
+// 用户状态
+enum UserStatus {
+  // 未知
+  USER_STATUS_UNSPECIFIED = 0;
+
+  // 上线
+  ONLINE = 10;
+  // 下载
+  OFFLINE = 11;
+}

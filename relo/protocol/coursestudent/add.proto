@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package relo.protocol.coursestudent;
+
+option go_package = "github.com/reloclass/protocol/coursestudent;coursestudent";
+
+
+// 添加课程学生请求
+message AddReq {
+  // 课程编号
+  // @gotags: param:"id" json:"courseId,string" validate:"required"`
+  int64 course_id = 2;
+  // 学生编号
+  // @gotags: json:"studentIds"
+  repeated string student_ids = 3;
+}
+
+// 添加课程学生响应
+message AddRsp {
+  // 课程编号
+  // @gotags: json:"id,string"`
+  int64 course_id = 2;
+  // 学生编号
+  // @gotags: json:"studentIds"
+  repeated string student_ids = 3;
+}

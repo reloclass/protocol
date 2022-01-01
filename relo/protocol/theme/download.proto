@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package relo.protocol.theme;
+
+import "relo/core/cloudfile/operation_type.proto";
+
+option go_package = "github.com/reloclass/protocol/theme;theme";
+
+
+// 批量下载主题信息请求
+message BatchDownloadReq {
+  // 主题文件信息列表
+  repeated File files = 2;
+}
+
+// 主题文件信息
+message File {
+  // 文件Id
+  // @gotags: json:"fileId" validate:"required,len=20"
+  string file_id = 2;
+  // 文件另存名字
+  // @gotags: json:"name" validate:"omitempty,min=1,without_special_symbol,filename"
+  string name = 3;
+  // 操作类型
+  // @gotags: json:"type" default:"1" validate:"required,oneof=1 2 3"
+  relo.core.cloudfile.OperationType type = 4;
+}
+
+
+// 批量下载主题信息响应
+message BatchDownloadRsp {
+  // 文件下载列表
+  // @gotags: json:"files"
+  repeated FileUrl files = 2;
+}
+
+// 文件下载地址
+message FileUrl {
+  // 文件Id
+  // @gotags: json:"fileId"
+  string file_id = 2;
+  // 文件下载url
+  // @gotags: json:"url"
+  string url = 3;
+}

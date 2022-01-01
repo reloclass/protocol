@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+
+// 设置用户头像
+message SetAvatarReq {
+  // @gotags: json:"id,string"
+  int64 id = 1; // 用户id
+  // @gotags: json:"avatar"
+  string avatar = 2; // 头像
+}
+
+message SetAvatarRsp {
+}

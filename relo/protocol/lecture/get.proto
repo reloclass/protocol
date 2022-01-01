@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package relo.protocol.lecture;
+
+option go_package = "github.com/reloclass/protocol/lecture;lecture";
+
+
+// 获取讲次请求
+message GetReq {
+  // 讲次编号
+  // @gotags: param:"id"
+  int64 id = 2;
+}
+
+// 获取课程讲次请求
+message GetsByCourseReq {
+  // 课程编号
+  // @gotags: param:"courseId"
+  int64 course_id = 2;
+}
+
+// 获取课程第一个讲次请求
+message GetFirstReq {
+  // 课程编号
+  // @gotags: query:"courseId"
+  int64 course_id = 2;
+}

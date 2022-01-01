@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 学校用户出勤信息
+message UserAttendanceStatistics {
+  // 出勤次数
+  // @gotags: json:"attendanceNum"
+  int32 attendance_num = 2;
+  // 缺勤次数
+  // @gotags: json:"absenteeismNum"
+  int32 absenteeism_num = 3;
+  // 迟到次数
+  // @gotags: json:"lateNum"
+  int32 late_num = 4;
+  // 早退次数
+  // @gotags: json:"earlyNum"
+  int32 early_num = 5;
+}

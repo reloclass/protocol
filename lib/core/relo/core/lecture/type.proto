@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core.lecture;
+
+option go_package = "github.com/reloclass/core/lecture";
+
+
+// 章节类型
+enum Type {
+  // 章节
+  CHAPTER = 0;
+  // 讲次
+  SECTION = 1;
+}

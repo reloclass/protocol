@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package relo.protocol.coursestudent;
+
+option go_package = "github.com/reloclass/protocol/coursestudent;coursestudent";
+
+
+// 删除课程学生请求
+message DeleteReq {
+  // 课程编号
+  // @gotags: param:"id" json:"courseId,string" validate:"required"`
+  int64 course_id = 2;
+
+  // 用户编号
+  // @gotags: param:"userId" validate:"required"`
+  int64 user_id = 3;
+}

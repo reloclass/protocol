@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/theme/status.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+// 主题信息
+message Theme {
+  // 主题Id
+  // @gotags: json:"id,string"`
+  int64 id = 2;
+  // 学校Id
+  // @gotags: json:"schoolId,string"`
+  int64 school_id = 3;
+  // 主题信息
+  string info = 4;
+  // 主题状态
+  relo.core.theme.Status status = 5;
+}

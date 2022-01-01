@@ -1,0 +1,5 @@
+
+[submodule "lib/core"]
+	path = lib/core
+	url = https://bitbucket.class100.com/scm/relo/core.git
+	branch = feature/YUNKE-4778-the-database-server-refactoring-operation

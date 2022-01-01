@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package relo.core;
+
+option go_package = "github.com/reloclass/core";
+
+
+// 作业状态
+enum HomeworkState {
+  // 老师未批阅
+  UNREVIEW = 0;
+  // 老师批阅正常
+  REVIEW_NORMAL = 1;
+  // 老师批阅打回重做
+  REPULSE = 2;
+  // 学生重新订正
+  RECTIFY_ALREADY = 3;
+}

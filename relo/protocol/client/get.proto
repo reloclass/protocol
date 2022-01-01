@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package relo.protocol.client;
+
+import "relo/core/client/type.proto";
+import "relo/protocol/vo/client_detail.proto";
+
+option go_package = "github.com/reloclass/protocol/client;client";
+
+// 分页获取客户端信息请求
+message GetsByPagingReq{
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: default:"desc" query:"sortOrder" validate:"oneof=desc DESC asc ASC"
+  string order = 5;
+  // 排序字段
+  // @gotags: default:"created_at" query:"sortField" validate:"oneof=updated_at created_at"
+  string sort = 6;
+
+  // 客户端类型
+  // @gotags: default:"1" query:"clientType" validate:"oneof=1 2 3"
+  relo.core.client.Type type = 7;
+}
+
+// 分页获取客户端信息响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+
+  // 数据
+  repeated vo.ClientDetail items = 3;
+}
+
+// 获取客户端版本请求
+message GetCurrentReq {
+  // 客户端类型
+  // @gotags: query:"type" validate:"omitempty"
+  relo.core.client.Type type = 2;
+  // 版本号
+  // @gotags: query:"version" validate:"omitempty"
+  string version = 3;
+}
+
+// 获取客户端版本响应
+message GetCurrentRsp {
+  // Windows客户端信息
+  // @gotags: json:"windowsInfo"
+  vo.ClientDetail windows = 2;
+  // Android客户端信息
+  // @gotags: json:"androidInfo"
+  vo.ClientDetail android = 3;
+  // ios客户端文件下载链接
+  // @gotags: json:"iosDownloadUrl"
+  string ios_url = 4;
+}
+
+
+

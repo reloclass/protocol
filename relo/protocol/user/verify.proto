@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+message VerifyReq {
+  // 密码
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 3;
+}

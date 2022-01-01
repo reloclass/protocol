@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/course/material_type.proto";
+import "relo/core/cloudfile/type.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 教学资料
+message TeachingMaterial {
+  // 资料编号
+  // @gotags: json:"id,string"
+  int64 id = 2;
+  // Resource 教学资源关联云盘路径
+  // 例如 /a/b/c
+  // @gotags: json:"resource" validate:"omitempty,startswith=/"
+  string resource = 3;
+  // Type 资源类型
+  // @gotags: json:"type" validate:"required,oneof=1 2"
+  core.course.MaterialType type = 4;
+  // FileType 文件类型
+  // @gotags: json:"fileType" validate:"required,oneof=1 2"
+  core.cloudfile.Type file_type = 5;
+  // 创建Unix时间戳
+  // @gotags: json:"createTimestamp"
+  int64 create_timestamp = 6;
+  // 课程编号,课节编号
+  // @gotags: json:"ownerId,string"
+  int64 owner_id = 7;
+  // 排课计划id
+  // @gotags: json:"courseScheduleId,string"
+  int64 course_schedule_id = 8;
+}

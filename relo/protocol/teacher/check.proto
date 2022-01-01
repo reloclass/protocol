@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package relo.protocol.teacher;
+
+option go_package = "github.com/reloclass/protocol/teacher;teacher";
+
+// 检查是否已经是老师请求
+message CheckReq {
+  // 手机号
+  // @gotags: json:"phone" validate:"required,printascii,mobile"
+  string phone = 2;
+}
+
+// 检查是否已经是老师响应
+message CheckRsp {
+  // 手机号
+  string phone = 2;
+  // 是否为老师
+  bool exist = 3;
+}
+

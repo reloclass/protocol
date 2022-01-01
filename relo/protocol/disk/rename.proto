@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package relo.protocol.disk;
+
+option go_package = "github.com/reloclass/protocol/disk;disk";
+
+
+// 重命名文件请求
+message RenameReq {
+  // 编号
+  // 当Type为private时 为用户编号
+  // 当Type为public 时 为机构编号
+  // @gotags: validate:"required"`
+  int64 id = 2;
+  // 根据不同的编号获取不同的地址
+  // private 个人云盘
+  // public 公共云盘
+  // @gotags: validate:"required,oneof= public private"`
+  string type = 3;
+  // 修改类型
+  // @gotags: json:"fileType" validate:"required,oneof=1 2"
+  int32 file_type = 4;
+  // 文件夹/文件的父路径
+  // @gotags: json:"path" validate:"required,startswith=/"
+  string path = 5;
+  // Src 要更改的名字
+  // 文件夹	例如：b
+  // 文件  	例如: b.txt
+  // @gotags: json:"src" validate:"required"
+  string src = 6;
+  // Dst 目的名字
+  // 文件夹	例如：c
+  // 文件  	例如: c.txt
+  // @gotags: json:"dst" validate:"required,filename"
+  string dst = 7;
+  // 文件唯一Id
+  // @gotags: json:"fileId"
+  string file_id = 8;
+  // 描述信息
+  string desc = 9;
+}

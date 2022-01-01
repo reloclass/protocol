@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core.question;
+
+option go_package = "github.com/reloclass/core/question";
+
+
+// 问题体温类型
+enum AskType {
+  // 讲师、助教提问
+  TEACHER = 0;
+  // 督课提问
+  SUPERVISOR = 1;
+}

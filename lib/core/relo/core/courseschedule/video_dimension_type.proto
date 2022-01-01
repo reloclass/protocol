@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.courseschedule;
+
+option go_package = "github.com/reloclass/core/courseschedule";
+
+
+// 视频质量
+enum VideoDimensionType {
+  // 未知
+  VIDEO_DIMENSION_TYPE_UNSPECIFIED = 0;
+
+  // 标清
+  STANDARD = 1;
+  // 高清
+  HIGH = 2;
+  // 超清
+  SUPER = 3;
+}
