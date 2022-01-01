@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core.cloudfile;
+
+option go_package = "github.com/reloclass/core/cloudfile";
+
+
+//  文件类型
+enum Type {
+  // 任何文件
+  ANY = 0;
+  // 目录
+  DIR = 1;
+  // 文件
+  FILE = 2;
+}

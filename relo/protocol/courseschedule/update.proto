@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package relo.protocol.courseschedule;
+
+import "relo/core/courseschedule/repeat_type.proto";
+import "relo/core/courseschedule/sub_repeat_type.proto";
+import "relo/core/courseschedule/repeat_value.proto";
+import "relo/core/course/class_mode.proto";
+import "relo/core/courseschedule/allowed_type.proto";
+import "relo/core/courseschedule/record_type.proto";
+import "relo/protocol/vo/teaching_material.proto";
+import "relo/core/courseschedule/live_allowed_type.proto";
+import "relo/core/courseschedule/video_dimension_type.proto";
+
+option go_package = "github.com/reloclass/protocol/courseschedule;courseschedule";
+
+
+// 更新排课计划请求
+message UpdateReq {
+  // 排课计划编号
+  // @gotags: param:"id"
+  int64 id = 1;
+  // 学校编号
+  // @gotags: json:"schoolId,string" validate:"required"
+  int64 school_id = 2;
+  // 课程编号
+  // @gotags: json:"courseId,string" validate:"required"
+  int64 course_id = 3;
+  // 主讲老师
+  // @gotags: json:"teacherId,string" validate:"required"
+  int64 teacher_id = 4;
+  // 助教
+  // @gotags: json:"assistantIds"
+  repeated string assistant_ids = 5;
+  // 课节名称
+  string name = 6;
+  // 开始时间
+  // @gotags: json:"startTime" validate:"required"
+  string start_time = 7;
+  // 授课时长 单位：分钟
+  // @gotags: json:"duration" validate:"omitempty,min=1,max=450"
+  int32 duration = 8;
+  // 结束时间
+  // @gotags: json:"endTime" validate:"required"
+  string end_time = 9;
+  // 重复类型
+  // @gotags: default:"0" json:"repeatType" validate:"omitempty,oneof=0 1 2 3 4"
+  core.courseschedule.RepeatType repeat_type = 10;
+  // 子类型
+  // @gotags: default:"0" json:"subRepeatType" validate:"omitempty,oneof=1 2 3"
+  core.courseschedule.SubRepeatType sub_repeat_type = 11;
+  // 重复次数
+  // @gotags: json:"repeatTimes" validate:"omitempty,min=1"
+  int32 repeat_times = 12;
+  // 重复间隔
+  // @gotags: json:"repeatInterval" validate:"omitempty,min=1"
+  int32 repeat_interval = 13;
+  // 重复值
+  // @gotags: json:"repeatValues"
+  repeated core.courseschedule.RepeatValue repeat_values = 14;
+  // 上课模式
+  // @gotags: default:"1" json:"classMode" validate:"omitempty,oneof=1 2 3"
+  core.course.ClassMode class_mode = 15;
+  // 允许类型
+  // @gotags: default:"1" json:"allowedType" validate:"omitempty,oneof=1 2 3"
+  core.courseschedule.AllowedType allowed_type = 16;
+  // 是否需要验证码
+  // json:"isCaptchaRequired" validate:"omitempty"
+  bool is_captcha_required = 17;
+  // 录制操作类型
+  // @gotags: default:"1" json:"recordType" validate:"omitempty,oneof=1 2 3"
+  core.courseschedule.RecordType record_type = 18;
+  // 课程计划教学资料
+  repeated vo.TeachingMaterial materials = 19;
+  // 是否允许直播
+  // @gotags: json:"liveAllowedType" validate:"required,oneof=1 2"
+  core.courseschedule.LiveAllowedType live_allowed_type = 20;
+  // 视频质量
+  // @gotags: json:"videoDimension" validate:"required,oneof=1 2 3"
+  core.courseschedule.VideoDimensionType video_dimension_type = 21;
+  // 上台人数
+  // @gotags: json:"stageNumber" validate:"required,min=1,max=12"
+  int32 state_number = 22;
+}

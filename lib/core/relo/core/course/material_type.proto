@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package relo.core.course;
+
+option go_package = "github.com/reloclass/core/course";
+
+
+// 课程教学资料类型
+enum MaterialType {
+  // 未知
+  MATERIAL_TYPE_UNSPECIFIED = 0;
+
+  // 教学资料
+  RESOURCE = 1;
+  // 教案
+  PLAN = 2;
+}

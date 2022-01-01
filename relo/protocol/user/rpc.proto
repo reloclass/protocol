@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+import "relo/protocol/user/code.proto";
+import "relo/protocol/user/register.proto";
+import "relo/protocol/user/login.proto";
+import "relo/protocol/user/get.proto";
+import "relo/protocol/user/avatar.proto";
+import "relo/protocol/user/add.proto";
+import "relo/protocol/user/password.proto";
+import "relo/protocol/user/nickname.proto";
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+service Rpc {
+  // 获取验证码
+  rpc VerificationCode (CodeReq) returns (CodeRsp){};
+  // 注册
+  rpc Register (RegisterReq) returns (RegisterRsp){};
+  // 登陆
+  rpc Login (LoginReq) returns (LoginRsp){};
+  // 修改密码
+  rpc UpdatePwd (UpdatePwdReq) returns (UpdatePwdRsp){};
+  // 重置密码
+  rpc ResetPwd (ResetPwdReq) returns (ResetPwdRsp){};
+  rpc GetUser (UserReq) returns (UserRsp){};
+  rpc GetUsers (UsersReq) returns (UsersRsp){};
+  rpc AddUserIfNotExist (AddUserReq) returns (AddUserRsp){};
+  rpc SetAvatar(SetAvatarReq) returns (SetAvatarRsp){};
+  rpc SetNickname(SetNicknameReq) returns (SetNicknameRsp){};
+}

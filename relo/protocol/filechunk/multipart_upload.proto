@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package relo.protocol.cloudfile;
+
+import "relo/core/cloudfile/file_chunk.proto";
+
+option go_package = "github.com/reloclass/protocol/filechunk;filechunk";
+
+
+// 初始化分块上传请求
+message InitReq {
+  // 文件编号
+  // @gotags: json:"fileId" validate:"required,len=20"
+  string file_id = 2;
+  // 文件所属类型
+  // @gotags: json:"type" validate:"required,oneof=course public private resource"
+  string type = 3;
+
+  // 学校编号
+  // @gotags: json:"schoolId,string" validate:"omitempty"
+  int64 school_id = 4;
+  // 上传内容的contentType
+  // @gotags: json:"contentType" validate:"required"
+  string content_type = 5;
+}
+
+// 初始化分块上传响应
+message InitRsp {
+  // 腾讯Cos对象存储分块上传时唯一标识Id
+  // @gotags: json:"uploadId"
+  string upload_id = 2;
+}
+
+// 完成分块上传请求
+message CompleteReq {
+  // 文件编号
+  // @gotags: json:"fileId" validate:"required,len=20"
+  string file_id = 2;
+  // 腾讯Cos对象存储分块上传时唯一标识Id
+  // @gotags: json:"uploadId" validate:"required"
+  string upload_id = 3;
+  // 每一部分上传返回信息
+  // @gotags: json:"parts" validate:"required,dive"
+  repeated core.cloudfile.ChunkInfo parts = 4;
+}
+
+// 中断分块上传请求
+message AbortReq {
+  // 文件编号
+  // @gotags: json:"fileId" validate:"required,len=20"
+  string file_id = 2;
+}

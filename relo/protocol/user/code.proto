@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+
+// 生成验证码
+message CodeReq {
+  // @gotags: json:"phone" validate:"required,printascii,mobile"
+  string phone = 1; // 手机号
+}
+
+message CodeRsp {
+}

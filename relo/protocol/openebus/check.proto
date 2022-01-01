@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package relo.protocol.openebus;
+
+option go_package = "github.com/reloclass/protocol/openebus;openebus";
+
+// 获取是否购买请求参数
+message CheckReq {
+  // 手机号
+  // @gotags: json:"phone" validate:"required,mobile"
+  string phone = 2;
+  // 课节编号
+  // @gotags: json:"courseTimeId,string"
+  int64 course_time_id = 3;
+}
+
+// 获取是否购买响应参数
+message CheckRes {
+  // 0 已购买
+  // 1 未购买
+  // @gotags: json:"CODE"
+  string code = 2;
+  // 信息
+  // @gotags: json:"MSG"
+  string msg = 3;
+}

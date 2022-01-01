@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.course;
+
+option go_package = "github.com/reloclass/core/course";
+
+
+// 上课模式
+enum ClassMode {
+  // 未知
+  CLASS_MODE_UNSPECIFIED = 0;
+
+  // 智慧课堂
+  WISDOM_CLASSROOM = 1;
+  // 双师模式
+  DOUBLE = 2;
+  // 会议模式
+  MEETING = 3;
+}

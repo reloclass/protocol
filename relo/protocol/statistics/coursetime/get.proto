@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package relo.protocol.attendance.coursetime;
+
+import "relo/core/user/type.proto";
+
+import "relo/protocol/vo/course_time_attendance_statistics.proto";
+
+
+option go_package = "github.com/reloclass/protocol/statistics/lesson;lesson";
+
+// 分页获取客户端信息请求
+message GetsByPagingReq{
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+
+  // 用户在课节中类型 2：老师  3：学生
+  // @gotags: query:"userType" json:"userType" validate:"oneof=2 3"
+  relo.core.user.Type user_type = 5;
+  // StartTime 开始时间条件
+  // @gotags: query:"startTime" json:"startTime" validate:"omitempty"
+  string start_time = 6;
+  // EndTime 结束时间条件
+  // @gotags: query:"endTime" json:"endTime" validate:"omitempty"
+  string end_time = 7;
+  // 要查用户的编号
+  // @gotags: query:"userId" json:"userId" validate:"required"
+  int64 user_id = 8;
+}
+
+// 分页获取客户端信息响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+
+  // 数据
+  repeated vo.CourseTimeAttendanceStatistics items = 3;
+}
+
+
+

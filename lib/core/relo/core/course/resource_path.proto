@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core.course;
+
+option go_package = "github.com/reloclass/core/course";
+
+
+// 课程更新资源纯数据对象
+message ResourcePath {
+  // 源目录
+  // @gotags: json:"srcPath"
+  string src_path = 2;
+  // 目的目录
+  // @gotags: json:"dstPath"
+  string dst_path = 3;
+}

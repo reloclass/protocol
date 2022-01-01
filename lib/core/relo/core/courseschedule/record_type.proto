@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.courseschedule;
+
+option go_package = "github.com/reloclass/core/courseschedule";
+
+
+// 录制操作类型
+enum RecordType {
+  // 未知
+  RECORD_TYPE_UNSPECIFIED = 0;
+
+  // 不进行录制
+  RECORD_NO = 1;
+  // 仅仅进行录制
+  ONLY = 2;
+  // 录制并可以进行回放
+  PLAY_BACK = 3;
+}

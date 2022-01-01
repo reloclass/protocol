@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package relo.protocol.school;
+
+import "relo/protocol/vo/school.proto";
+import "relo/core/menu/auth.proto";
+
+option go_package = "github.com/reloclass/protocol/school;school";
+
+
+// 切换学校登录请求
+message SwitchReq {
+  // 学校id
+  // @gotags: param:"schoolId" json:"schoolId,string"
+  int64 school_id = 2;
+}
+
+// 切换学校登录响应
+message SwitchRsp {
+  // token
+  // @gotags: json:"token"
+  string token = 2;
+  // 学校信息
+  // @gotags: json:"school"
+  relo.protocol.vo.BaseSchool school = 5;
+  // 菜单权限
+  // @gotags: json:"auth"
+  repeated relo.core.menu.Auth auth = 6;
+}

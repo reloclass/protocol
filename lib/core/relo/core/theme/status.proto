@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core.theme;
+
+option go_package = "github.com/reloclass/core/theme";
+
+
+// 主题状态
+enum Status {
+  // 禁用
+  DISABLE = 0;
+  // 启用
+  ENABLE = 1;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package relo.protocol.disk;
+
+option go_package = "github.com/reloclass/protocol/disk;disk";
+
+// 获取文件列表请求
+message DeleteReq {
+  // 编号
+  // 当Type为private时 为用户编号
+  // 当Type为public 时 为机构编号
+  // @gotags: query:"id" validate:"required"`
+  int64 id = 2;
+  // 根据不同的编号获取不同的地址
+  // private 个人云盘
+  // public 公共云盘
+  // @gotags: query:"type" validate:"required,oneof= public private"`
+  string type = 3;
+  // 父路径
+  // @gotags: query:"path" validate:"required,startswith=/,filename"`
+  string path = 4;
+}

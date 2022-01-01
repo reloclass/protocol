@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package relo.protocol.cloudfile;
+
+option go_package = "github.com/reloclass/protocol/cloudfile;cloudfile";
+
+
+// 删除请求
+message DeleteReq {
+  // 文件编号
+  // @gotags: param:"fileId" json:"fileId"
+  string file_id = 2;
+}

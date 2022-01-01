@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package relo.core.courseschedule;
+
+option go_package = "github.com/reloclass/core/courseschedule";
+
+
+// 排课重复值
+message RepeatValue {
+  // 周几
+  // @gotags: json:"weekDay"
+  int32 week_day = 1;
+
+  // 开始时间 12:00:00
+  // @gotags: json:"startTime"
+  string start_time = 2;
+
+  // 时长（分钟）
+  int32 duration = 3;
+}

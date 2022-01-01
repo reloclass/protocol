@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.protocol.template;
+
+option go_package = "github.com/reloclass/protocol/template;template";
+
+
+// 下载模板请求
+message DownloadReq {
+  // 模板类型
+  // @gotags: query:"type" validate:"required,oneof=teacher student user"
+  string type = 2;
+  // 文件下载名称
+  // @gotags: query:"name"
+  string name = 3;
+}

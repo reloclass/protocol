@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package relo.protocol.theme;
+
+option go_package = "github.com/reloclass/protocol/theme;theme";
+
+
+// 更新主题信息请求
+message UpdateByAdminReq {
+  // 主题Id
+  // @gotags: param:"id" json:"id,string"
+  int64 id = 2;
+  // 主题信息
+  string info = 3;
+}
+
+// 更新主题信息请求
+message UpdateBySchoolReq {
+  // 主题Id
+  // @gotags: param:"id" json:"id,string"
+  int64 id = 2;
+  // 主题信息
+  string info = 3;
+}
