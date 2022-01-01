@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package relo.protocol.theme;
+
+import "relo/core/theme/status.proto";
+
+option go_package = "github.com/reloclass/protocol/theme;theme";
+
+
+// 设置主题状态请求
+message SetStatusReq {
+  // 主题Id
+  // @gotags: param:"id" json:"id,string"
+  int64 id = 2;
+  // 主题状态
+  relo.core.theme.Status status = 3;
+}

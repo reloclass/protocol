@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package relo.protocol.course;
+
+import "relo/core/course/type.proto";
+import "relo/core/course/class_mode.proto";
+import "relo/protocol/vo/course.proto";
+
+option go_package = "github.com/reloclass/protocol/course;course";
+
+
+// 获取课程信息请求
+message GetReq {
+  // 课程id
+  // @gotags: query:"id"
+  int64 id = 2;
+}
+
+
+// 分页获取请求
+message GetsByPagingReq {
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: default:"desc" query:"sortOrder" validate:"oneof=desc DESC asc ASC"
+  string order = 5;
+  // 排序字段
+  // @gotags: default:"updated_at" query:"sortField" validate:"oneof=id created_at updated_at name title"
+  string sort = 6;
+
+  // 课程类型
+  // @gotags: query:"types"
+  repeated core.course.Type types = 7;
+  // 创建人编号
+  // @gotags: query:"creatorName" json:"creatorName"
+  string creator_name = 8;
+  // 创建时间起始
+  // @gotags: query:"startTime" json:"startTime"
+  string start_time = 9;
+  // 创建时间结束
+  // @gotags: query:"endTime" json:"endTime"
+  string end_time = 10;
+  // 模式
+  // @gotags: query:"classMode" json:"classMode"
+  core.course.ClassMode class_mode = 11;
+  // 学校编号
+  // @gotags: query:"schoolId" json:"schoolId"
+  int64 school_id = 12;
+}
+
+// 分页获取响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+  // 课程数据
+  repeated vo.Course items = 3;
+}

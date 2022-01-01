@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package relo.protocol.asset;
+
+option go_package = "github.com/reloclass/protocol/asset;asset";
+
+
+// 获取预览链接请求
+message GetPreviewUrlReq {
+  // 学校编号
+  // @gotags: json:"schoolId"
+  int64 school_id = 2;
+  // 文件编号
+  // @gotags: json:"fileId"
+  string file_id = 3;
+  // 文件名
+  // @gotags: json:"fileName"
+  string file_name = 4;
+  // 文件类型
+  // @gotags: json:"dirType"
+  string dir_type = 5;
+  // 用户id
+  // @gotags: json:"userId"
+  int64 user_id = 6;
+}
+
+// 获取预览链接响应
+message GetPreviewUrlRsp {
+  // 文件预览链接
+  string url = 2;
+}

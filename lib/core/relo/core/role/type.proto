@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.role;
+
+option go_package = "github.com/reloclass/core/role";
+
+
+// 用户类型
+enum Type {
+  // 未知
+  TYPE_UNSPECIFIED = 0;
+
+  // 管理员
+  ADMIN = 1;
+  // 教师
+  TEACHER = 2;
+  // 学生
+  STUDENT = 3;
+}

@@ -1,0 +1,74 @@
+kind: pipeline
+type: docker
+name: 云视课堂协议
+
+
+clone:
+  disable: true
+
+
+trigger:
+  event:
+    exclude:
+      - pull_request
+
+
+environment:
+  VERSION: 0.0.112
+  CORE_VERSION: 0.0.49
+
+
+steps:
+  - name: 拉代码
+    image: plugins/git
+    pull: if-not-exists
+    settings:
+      recursive: true
+      submodule_update_remote: true
+
+  - name: 编译
+    image: storezhang/protobuf
+    pull: if-not-exists
+    commands:
+      - # 处理第三方库
+      - export includes="--proto_path=."
+      - includes="$includes --proto_path=lib/core"
+      - # 处理额外参数
+      - export tags="--experimental_allow_proto3_optional"
+      - # 编译Golang版本
+      - protoc $includes $tags --go_out=plugins=grpc:lang/go --go_opt=module=github.com/reloclass/protocol relo/protocol/*/*.proto
+      - protoc $includes $tags --go_out=plugins=grpc:lang/go --go_opt=module=github.com/reloclass/protocol relo/protocol/*/*/*.proto
+      - # 写入最新的README.md文件
+      - cp -f README.md lang/go/README.md
+
+  - name: 处理Golang标签
+    image: storezhang/tig
+    pull: if-not-exists
+    settings:
+      folder: lang/go
+
+  - name: 更新Golang模块描述文件
+    image: storezhang/mcu
+    pull: if-not-exists
+    settings:
+      filepath: lang/go
+      lang: go
+      dependencies:
+        - github.com/reloclass/core@v$${CORE_VERSION}
+
+  - name: 推送Golang版本
+    image: storezhang/git
+    pull: always
+    settings:
+      remote: git@github.com:reloclass/protocol.git
+      path: lang/go
+      force: true
+      commit_message: ${DRONE_COMMIT_MESSAGE}
+      tag: v$${VERSION}
+      ssh_key:
+        from_secret: ssh_key_github
+
+
+volumes:
+  - name: deps
+    temp: { }

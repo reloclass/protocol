@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package relo.protocol.supervise;
+
+import "relo/core/lesson/status.proto";
+import "relo/core/course/type.proto";
+import "relo/core/course/class_mode.proto";
+import "relo/protocol/vo/supervise_course_time.proto";
+
+option go_package = "github.com/reloclass/protocol/supervise;supervise";
+
+// 分页获取课节信息请求
+message GetsByPagingReq{
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: default:"desc" query:"sortOrder" validate:"oneof=desc DESC asc ASC"
+  string order = 5;
+  // 排序字段
+  // @gotags: default:"created_at" query:"sortField" validate:"oneof=updated_at created_at"
+  string sort = 6;
+  // 课程名称
+  // @gotags: query:"courseName" json:"courseKey" validate:"omitempty,without_special_symbol,max=30"
+  string course_key = 7;
+  // 讲师名称
+  // @gotags: query:"lectureName" json:"teacherKey" validate:"omitempty,without_special_symbol,max=30"
+  string teacher_key = 8;
+  // 助教
+  // @gotags: query:"assistantName" json:"assistantKey" validate:"omitempty,without_special_symbol,max=30"
+  string assistant_key = 9;
+  // 学生名称
+  // @gotags: query:"studentName" json:"studentKey" validate:"omitempty,without_special_symbol,max=30"
+  string student_key = 10;
+  // 课节名称
+  // @gotags: query:"nameKey" json:"nameKey"
+  string name_key = 11;
+  // 开始时间条件
+  // @gotags: query:"startTime" json:"startTime"  validate:"required"
+  string start_time = 12;
+  // 结束时间条件
+  // @gotags: query:"endTime" json:"endTime"  validate:"required"
+  string end_time = 13;
+  // 学校编号
+  // @gotags: query:"schoolId" json:"schoolId"
+  int64 school_id = 14;
+  // 课程状态
+  // @gotags: query:"statuses" json:"statuses"
+  repeated core.lesson.Status statuses = 15;
+  // 上课模式
+  // @gotags: query: "classMode" json:"classMode" validate:"omitempty,oneof=1 2 3"
+  core.course.ClassMode class_mode = 16;
+  // 课程类型
+  // @gotags: query:"type"
+  core.course.Type type = 17;
+}
+
+// 分页获取课节信息响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+
+  // 数据
+  repeated vo.SuperviseCourseTime items = 3;
+}

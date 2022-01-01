@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/client/type.proto";
+import "relo/core/client/status.proto";
+import "relo/core/client/update_type.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 客户端信息
+message ClientDetail {
+  // 客户端编号
+  // @gotags: json:"id,string"`
+  int64 id = 2;
+
+  // 版本信息
+  string version = 3;
+  // 客户端类型
+  // @gotags: json:"clientType"
+  relo.core.client.Type type = 4;
+  // 发布状态
+  relo.core.client.Status status = 5;
+  // 版本描述
+  // @gotags:json:"versionDesc"
+  string desc = 6;
+
+  // 文件编号
+  // @gotags: json:"fileId"
+  string file_id = 7;
+  // 文件MD5
+  string md5 = 8;
+  // 文件下载链接
+  // @gotags: json:"fileUrl"
+  string file_url = 9;
+
+  // 更新类型
+  // @gotags: json:"updateType"
+  relo.core.client.UpdateType update_type = 10;
+
+  // 发布时间
+  // @gotags: json:"publishedAt"
+  int64 published = 11;
+  // 创建时间
+  // @gotags: json:"createdAt"
+  int64 created = 12;
+  // 更新时间
+  // @gotags: json:"updatedAt"
+  int64 updated = 13;
+}

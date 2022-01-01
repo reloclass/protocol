@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core.lecturecontent;
+
+option go_package = "github.com/reloclass/core/lecturecontent";
+
+
+// 讲次内容资料类型
+enum Type {
+  // 视频
+  VIDEO = 0;
+  // 资料
+  MATERIAL = 1;
+}

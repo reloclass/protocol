@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package relo.core.school;
+
+option go_package = "github.com/reloclass/core/school";
+
+
+// 学校状态
+enum Status {
+  // 可用
+  AVAILABLE = 0;
+  // 停用
+  OUT_OF_SERVICE = 1;
+}
+

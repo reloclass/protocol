@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.base;
+
+option go_package = "github.com/reloclass/core/base";
+
+
+// token信息
+message Token {
+  // 学校编号
+  // @gotags: json:"schoolId"
+  int64 school_id = 2;
+  // 用户Id
+  // @gotags: json:"userId"
+  int64 user_id = 3;
+  // 用户名
+  // @gotags: json:"name"
+  string name = 4;
+}

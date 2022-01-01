@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package relo.protocol.disk;
+
+import "relo/protocol/vo/dir_file.proto";
+
+option go_package = "github.com/reloclass/protocol/disk;disk";
+
+
+// 获取文件列表请求
+message GetFilesReq {
+  // 编号
+  // 当Type为private时 为用户编号
+  // 当Type为public 时 为机构编号
+  // @gotags: query:"id" validate:"required"`
+  int64 id = 2;
+  // 根据不同的编号获取不同的地址
+  // private 个人云盘
+  // public 公共云盘
+  // @gotags: query:"type" validate:"required,oneof= public private"`
+  string type = 3;
+  // 父路径
+  // @gotags: query:"path" validate:"required,startswith=/,filename"`
+  string path = 4;
+}
+
+// 获取文件列表响应
+message GetFilesRsp {
+  // 文件信息列表
+  repeated relo.protocol.vo.DirFile infos = 2;
+}
+
+
+// 磁盘信息請求
+message GetDiskReq {
+  // 编号
+  // 当Type为private时 为用户编号
+  // 当Type为public 时 为机构编号
+  // @gotags: query:"id" validate:"required"`
+  int64 id = 2;
+  // 根据不同的编号获取不同的地址
+  // private 个人云盘
+  // public 公共云盘
+  // @gotags: query:"type" validate:"required,oneof= public private"`
+  string type = 3;
+}
+
+// 磁盘信息响应
+message GetDiskRsp {
+  // 默认总大小 单位B
+  // @gotags: json:"defaultSize"
+  int64 default_size = 2;
+  // 使用大小 单位B
+  // @gotags: json:"useSize"
+  int64 use_size = 3;
+}

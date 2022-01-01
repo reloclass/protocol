@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core.cloudfile;
+
+option go_package = "github.com/reloclass/core/cloudfile";
+
+
+// 内存空间是否足够标记
+enum StorageState {
+  // 空间充足
+  ENOUGH = 0;
+  // 空间不足
+  NOT_ENOUGH = 1;
+}

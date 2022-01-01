@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package relo.core.record;
+
+option go_package = "github.com/reloclass/core/record";
+
+
+// 腾讯云录制信息数据
+message StartReq {
+  // 请求操作类型,开始录制为Start
+  // @gotags: json:"Action" validate:"required"
+  string action = 2;
+  // 请求协议参数
+  // @gotags: json:"Data" validate:"required"
+  Data data = 3;
+}
+
+// 开始录制相关参数
+message Data {
+  // 需要录制的WEB⻚⾯访问URL
+  // @gotags: json:"RecordURL" validate:"required"
+  string url = 2;
+  // 录制画⾯宽度， 默认为1280， 合法取值范围[0, 2560]
+  // @gotags: json:"Width"
+  int64 width = 3;
+  // 录制画⾯⾼度， 默认为720， 合法取值范围[0, 2560]
+  // @gotags: json:"Height"
+  int64 height = 4;
+  // 录制结果通知回调地址
+  // @gotags: json:"CallbackURL"
+  string callbackUrl = 5;
+  // 录制最⼤时⻓限制， 单位s, 合法取值范围[0, 36000], 默认36000s(10⼩时)
+  // @gotags: json:"MaxDurationLimit"
+  int64 maxDuration = 6;
+  // 开始录制输出参数
+  // @gotags: json:"Output"
+  Out out = 7;
+}
+
+// 录制输出参数
+message Out {
+  // 云存储参数
+  // @gotags: json:"Cos"
+  Cos cos = 2;
+}
+
+// 腾讯云对象存储
+message Cos {
+  // 录制文件回放域名，不设置为默认源站域名
+  // @gotags: json:"Domain"
+  string domain = 2;
+  // 录制文件存放空间，不设置默认为创建函数时设置的存储空间
+  // @gotags: json:"Bucket"
+  string bucket = 3;
+  // 录制文件存放区域，默认为存储空间所在区域
+  // @gotags: json:"Region"
+  string region = 4;
+
+  // 录制文件存放路径，不设置默认为 taskid
+  // @gotags: json:"TargetDir"
+  string targetDir = 5;
+  // 录制文件名称，不设置为结束时间戳
+  // @gotags: json:"TargetName"
+  string targetName = 6;
+}
+
+// 录制基本响应信息
+message StartRsp {
+  // 错误类型，只有请求出错的时候才会返回此字段
+  // @gotags: json:"ErrorCode"
+  string error_code = 2;
+  // 错误说明，只有请求出错的时候才会返回此字段
+  // @gotags: json:"ErrorMessage"
+  string error_message = 3;
+  // 请求ID
+  // @gotags: json:"RequestID"
+  string request_id = 4;
+  // 录制任务ID，只有开始录制成功的时候才会返回此字段
+  // @gotags: json:"TaskID"
+  string task_id = 5;
+}
+

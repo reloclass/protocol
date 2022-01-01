@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.protocol.client;
+
+option go_package = "github.com/reloclass/protocol/client;client";
+
+// 删除客户端信息请求
+message DeleteReq {
+  // 客户端信息编号
+  // @gotags: param:"id" validate:"required"
+  int64 id = 1;
+}
+
+// 删除客户端信息响应
+message DeleteRsp {
+  // 删除结果
+  // @gotags: json:"affected,string"
+  int64 affected = 1;
+}

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package relo.protocol.client;
+
+import "relo/core/client/update_type.proto";
+import "relo/core/client/type.proto";
+import "relo/core/client/publish_type.proto";
+
+option go_package = "github.com/reloclass/protocol/client;client";
+
+
+// 添加客户端请求
+message AddReq {
+  // 文件编号
+  // @gotags: json:"appInfo" validate:"required"
+  AppInfo app_info = 1;
+  // 发布类型
+  // @gotags: json:"type" validate:"required_with=0 1"
+  relo.core.client.PublishType type = 2;
+}
+
+message AppInfo {
+  // Windows 文件编号
+  // @gotags: json:"fileId" validate:"required,len=20"
+  string file_id = 1;
+  // 文件md5
+  // @gotags: json:"md5" validate:"omitempty"
+  string md5 = 2;
+
+  // 版本号
+  // @gotags: json:"version" validate:"required"
+  string version = 3;
+  // 版本说明
+  // @gotags: json:"versionDesc" validate:"required,min=2,max=4095"
+  string version_desc = 4;
+
+  // 更新类型
+  // @gotags: json:"updateType" validate:"required_with=1 2 3"
+  relo.core.client.UpdateType update_type = 5;
+  // 客户端类型
+  // @gotags: json:"clientType" validate:"required_with=0 1"
+  relo.core.client.Type client_type = 6;
+}
+
+// 添加响应
+message AddRsp {
+  // 客户端编号
+  // @gotags: json:"id,string"
+  int64 id = 1;
+}

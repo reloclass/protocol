@@ -1,0 +1,58 @@
+kind: pipeline
+type: docker
+name: 云课
+
+
+clone:
+  disable: true
+
+
+trigger:
+  event:
+    exclude:
+      - pull_request
+
+
+environment:
+  VERSION: 0.0.50
+  GO: lang/go
+
+
+steps:
+  - name: 拉代码
+    image: plugins/git
+    pull: if-not-exists
+
+  - name: 编译
+    image: storezhang/protobuf
+    pull: if-not-exists
+    commands:
+      # 处理额外参数
+      - export tags="--experimental_allow_proto3_optional"
+      # 编译Golang版本
+      - protoc $tags --go_out=plugins=grpc:$GO --go_opt=module=github.com/reloclass/core relo/core/*/*.proto
+      # 写入最新的README.md文件
+      - cp -f README.md $GO/README.md
+
+  - name: 处理Golang标签
+    image: storezhang/tig
+    pull: always
+    settings:
+      folder: lang/go
+
+  - name: 推送Golang版本
+    image: storezhang/git
+    pull: if-not-exists
+    settings:
+      remote: git@github.com:reloclass/core.git
+      path: lang/go
+      force: true
+      commit_message: ${DRONE_COMMIT_MESSAGE}
+      tag: v0.0.50
+      ssh_key:
+        from_secret: ssh_key_github
+
+
+volumes:
+  - name: deps
+    temp: { }

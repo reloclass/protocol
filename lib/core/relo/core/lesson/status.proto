@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package relo.core.lesson;
+
+option go_package = "github.com/reloclass/core/lesson";
+
+
+// 课节状态
+enum Status {
+  // 未开始（创建）
+  CREATED = 0;
+  // 预课中
+  PREPARING = 1;
+  // 进行中
+  STARTING = 2;
+  // 结束
+  END = 3;
+  // 拖堂
+  DELAYED = 4;
+  // 中止
+  SUSPENDED = 5;
+}

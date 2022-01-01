@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core.client;
+
+option go_package = "github.com/reloclass/core/client";
+
+
+// 客户端类型
+enum Type {
+  // 未知
+  TYPE_UNSPECIFIED = 0;
+
+  WINDOWS = 1;
+  MAC = 2;
+  ANDROID = 3;
+}

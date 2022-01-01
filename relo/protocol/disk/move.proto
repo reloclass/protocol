@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package relo.protocol.disk;
+
+option go_package = "github.com/reloclass/protocol/disk;disk";
+
+
+// 更新文件请求
+message MoveReq {
+  // 编号
+  // 当Type为private时 为用户编号
+  // 当Type为public 时 为机构编号
+  // @gotags: validate:"required"`
+  int64 id = 2;
+  // 根据不同的编号获取不同的地址
+  // private 个人云盘
+  // public 公共云盘
+  // @gotags: validate:"required,oneof= public private"`
+  string type = 3;
+  // Src 文件路径
+  // 使用全量路径 从根路径开始 比如/a/b.txt
+  // @gotags: json:"src" validate:"required,startswith=/"
+  string src = 4;
+  // Dst 文件目的路径
+  // 从根路径开始 比如/a/b.txt
+  // @gotags: json:"dst" validate:"required,startswith=/"
+  string dst = 5;
+}

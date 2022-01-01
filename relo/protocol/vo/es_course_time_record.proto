@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 课节录课资源
+message EsCourseTimeRecord {
+  // 文件编号
+  // @gotags: json:"fileId"
+  string file_id = 2;
+  // 视频名字
+  string name = 3;
+  // 创建时间
+  // @gotags: json:"createTime"
+  int64 create_time = 4;
+  // 是否删除
+  // @gotags: json:"isDeleted"
+  bool is_deleted = 5;
+}
