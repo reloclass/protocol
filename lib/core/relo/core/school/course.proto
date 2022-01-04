@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package relo.core.school;
+
+import "relo/core/course/class_mode.proto";
+import "relo/core/course/type.proto";
+
+option go_package = "github.com/reloclass/core/school";
+
+
+// 开设课程
+message Course {
+  // 课程类型
+  // @gotags: json:"courseType" validate:"required" oneof:"1 3 4"
+  relo.core.course.Type type = 1;
+  //  上课模式
+  // @gotags: json:"classMode" validate:"omitempty" oneof:"1 3 4"
+  relo.core.course.ClassMode class_mode = 2;
+  // 最大上课人数
+  // @gotags: json:"studentNumber" validate:"omitempty"
+  int32 student_number = 3;
+  // 课程分辨率
+  // @gotags: json:"courseResolution" validate:"omitempty"
+  Resolution resolution = 4;
+}
+
+// 分辨率
+enum Resolution {
+  // 未知
+  RESOLUTION_UNSPECIFIED = 0;
+  // 360P
+  P360 = 1;
+  // 表情
+  P480 = 2;
+  // 高清
+  P720 = 3;
+  // 超高清
+  P1080 = 4;
+  // 2K
+  K2 = 5;
+  // 4K
+  K4 = 6;
+  // 8K
+  K8 = 7;
+  // 原始分辨率
+  ORIGINAL = 15;
+}

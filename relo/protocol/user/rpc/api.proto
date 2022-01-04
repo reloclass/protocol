@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package relo.protocol.user.rpc;
+
+import "relo/protocol/user/rpc/code.proto";
+import "relo/protocol/user/rpc/register.proto";
+import "relo/protocol/user/rpc/login.proto";
+import "relo/protocol/user/rpc/password.proto";
+import "relo/protocol/user/rpc/get.proto";
+import "relo/protocol/user/rpc/add.proto";
+import "relo/protocol/user/rpc/avatar.proto";
+import "relo/protocol/user/rpc/nick_name.proto";
+
+option go_package = "github.com/reloclass/protocol/user/rpc;rpc";
+
+
+// 用户rpc调用
+service Api {
+  // 获取验证码
+  rpc Code (CodeReq) returns (CodeRsp){};
+  // 注册
+  rpc Register (RegisterReq) returns (RegisterRsp){};
+  // 登陆
+  rpc Login (LoginReq) returns (LoginRsp){};
+  // 修改密码
+  rpc UpdatePwd (UpdatePwdReq) returns (UpdatePwdRsp){};
+  // 重置密码
+  rpc ResetPwd (ResetPwdReq) returns (ResetPwdRsp){};
+  // 获取用户信息
+  rpc Get (GetReq) returns (GetRsp){};
+  // 分页获取用户信息
+  rpc GetsByPaging (GetsByPagingReq) returns (GetsByPagingRsp){};
+  // 添加用户
+  rpc AddUserIfNotExist (AddReq) returns (AddRsp){};
+  // 设置头像
+  rpc SetAvatar(SetAvatarReq) returns (SetAvatarRsp){};
+  // 设置昵称
+  rpc SetNickname(SetNicknameReq) returns (SetNicknameRsp){};
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core.lecture;
+
+option go_package = "github.com/reloclass/core/lecture";
+
+
+// 用户完成的讲次类型
+enum FinishedType {
+  // 讲次
+  LECTURE = 0;
+  // 作业
+  HOMEWORK = 1;
+  // 测验
+  TEST = 2;
+}

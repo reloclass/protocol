@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+import "relo/protocol/user/rpc/user.proto";
+import "relo/core/user/base.proto";
+import "relo/core/user/registration_type.proto";
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+
+// 添加用户请求
+message AddReq {
+  // 用户列表
+  // @gotags: json:"users,omitempty"
+  repeated core.user.Base users = 2;
+  // 代注册
+  // @gotags:  json:"register" validate:"omitempty,required_with= 0 1"
+  relo.core.user.RegistrationType register = 3;
+}
+
+// 添加学校用户响应
+message AddRsp {
+  // 未注册用户
+  // @gotags: json:"unregisterUsers"
+  repeated core.user.Base unregister_users = 2;
+  // 已存在的用户
+  // @gotags: json:"existUsers"
+  repeated core.user.Base exist_users = 3;
+}
+
+// 批量添加用户响应
+message BatchAddRsp {
+  // 文件重复用户
+  // @gotags: json:"unregisterUsers"
+  repeated core.user.Base unregister_users = 2;
+  // 文件重复用户
+  // @gotags: json:"repeatUsers"
+  repeated core.user.Base repeat_users = 3;
+  // 文件信息错误用户
+  // @gotags: json:"errUsers"
+  repeated core.user.Base err_users = 4;
+  // 文件中已注册用户
+  // @gotags: json:"existUsers"
+  repeated core.user.Base exist_users = 5;
+}
+
+
+message AddUserReq{
+  // @gotags: json:"phone"
+  string phone = 1; // 手机号
+  // @gotags: json:"nickname"
+  string nickname = 2; // 昵称
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 3; // 密码
+  // @gotags:  json:"code"   validate:"omitempty"
+  string code = 4; // 验证码
+}
+
+message AddUserRsp{
+  // @gotags: json:"newAdd"
+  bool new_add = 1; // 是否新增
+  // @gotags: json:"userInfo"
+  rpc.User user = 2; // 用户
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core.question;
+
+option go_package = "github.com/reloclass/core/question";
+
+
+// 问题状态
+enum Status {
+  // 未阅读
+  UNREAD = 0;
+  // 已经阅读
+  READ = 1;
+  // 已经回答
+  ANSWERED = 2;
+}

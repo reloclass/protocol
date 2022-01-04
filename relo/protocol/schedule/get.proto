@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package relo.protocol.schedule;
+
+import "relo/protocol/vo/schedule.proto";
+
+option go_package = "github.com/reloclass/protocol/schedule;schedule";
+
+
+// 获取排课请求
+message GetReq {
+  // 排课计划编号
+  // @gotags: param:"id"
+  int64 id = 2;
+}
+
+// 分页获取请求
+message GetsByPagingReq {
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: default:"desc" query:"sortOrder" validate:"oneof=desc DESC asc ASC"
+  string order = 5;
+  // 排序字段
+  // @gotags: default:"updated_at" query:"sortField" validate:"oneof=id created_at updated_at course_id teacher_id start_time end_time duration repeat_type sub_repeat_type repeat_times repeat_interval"
+  string sort = 6;
+  // 课程编号
+  // @gotags: param:"courseId" json:"courseId"
+  int64 course_id = 7;
+  // 老师编号
+  // @gotags: param:"teacherId" json:"teacherId"
+  int64 teacher_id = 8;
+  // 创建时间起始
+  // @gotags: query:"startTime" json:"startTime"
+  string start_time = 9;
+  // 创建时间结束
+  // @gotags: query:"createdTime" json:"endTime"
+  string end_time = 10;
+  // 学校编号
+  // @gotags: query:"schoolId" json:"schoolId"
+  int64 school_id = 12;
+  // 班级
+  // @gotags: query:"classId" json:"classId"
+  int64 class_id = 13;
+}
+
+// 分页获取响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+  // 课程数据
+  repeated vo.Schedule items = 3;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 课程学生信息
+message Student {
+  // 学校编号
+  // @gotags: json:"schoolId,string"
+  int64 school_id = 2;
+  // 课程编号
+  // @gotags: json:"courseId,string"
+  int64 course_id = 3;
+  // 学员编号
+  // @gotags: json:"studentId,string"
+  int64 student_id = 4;
+}

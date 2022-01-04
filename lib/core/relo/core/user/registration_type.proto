@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package relo.core.user;
+
+option go_package = "github.com/reloclass/core/user";
+
+
+enum RegistrationType {
+  // 不进行代注册
+  YES = 0;
+  // 进行代注册
+  NO = 1;
+}

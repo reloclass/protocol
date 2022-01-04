@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package relo.core;
+
+option go_package = "github.com/reloclass/core";
+
+
+// 作业附件附属类型
+enum HomeworkAttachmentAffiliationType {
+  // 归属作业类容
+  CONTENT = 0;
+  // 归属老师评语
+  COMMENT = 1;
+}

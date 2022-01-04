@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/user/status.proto";
+
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 学校用户基本信息
+message User {
+  // 用户编号
+  // @gotags:
+  int64 user_id = 2;
+  // 学校编号
+  // @gotags: json:"schoolId,string"
+  int64 school_id = 3;
+  // 手机号
+  string phone = 4;
+  // 是否老师
+  // @gotags: json:"isTeacher"
+  bool is_teacher = 5;
+  // 是否学生
+  // @gotags: json:"isStudent"
+  bool is_student = 6;
+  // 是否管理员
+  // @gotags: json:"isConsole"
+  bool is_console = 7;
+  // 老师状态 0正常、1停用
+  // @gotags: json:"teacherStatus"
+  core.user.Status teacher_status = 8;
+  // 学生状态 0正常、1停用
+  // @gotags: json:"studentStatus"
+  core.user.Status student_status = 9;
+  // 管理员状态 0正常、1停用
+  // @gotags: json:"consoleStatus"
+  core.user.Status console_status = 10;
+  // 教师名称
+  // @gotags: json:"teacherName"
+  string teacher_name = 11;
+  // 学生名称
+  // @gotags: json:"studentName"
+  string student_name = 12;
+  // 后台名称
+  // @gotags: json:"consoleName"
+  string console_name = 13;
+  // 创建时间
+  // @gotags: json:"createdAt"
+  string created_at = 14;
+  // 更新时间
+  // @gotags: json:"updatedAt"
+  string updated_at = 15;
+}

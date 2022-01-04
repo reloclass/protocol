@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+
+// 检查用户是否注册请求
+message CheckRegisterReq {
+  // 手机号
+  // @gotags: json:"phone" validate:"required,printascii,mobile"
+  string phone = 2;
+}
+
+// 检查用户是否注册响应
+message CheckRegisterRsp {
+  // 手机号
+  string phone = 2;
+  // 是否注册
+  bool register = 3;
+}

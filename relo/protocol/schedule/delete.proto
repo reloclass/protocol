@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package relo.protocol.schedule;
+
+option go_package = "github.com/reloclass/protocol/schedule;schedule";
+
+
+// 获取排课请求
+message DeleteReq {
+  // 排课计划编号
+  // @gotags: param:"id"
+  int64 id = 2;
+}

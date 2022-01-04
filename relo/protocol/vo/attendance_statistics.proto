@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/user/type.proto";
+import "relo/protocol/vo/user_detail.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 课节出勤统计
+message AttendanceStatistics {
+  // 出勤编号
+  // @gotags: json:"id,string"
+  int64 id = 2;
+  // 学校编号
+  // @gotags: json:"schoolId,string"
+  int64 school_id = 3;
+  // 用户在这节课中的角色类型
+  // @gotags: json:"userType"
+  relo.core.user.Type user_type = 4;
+  // 课节编号
+  // @gotags: json:"courseTimeId,string"
+  int64 course_time_id = 5;
+  // 出勤次数
+  // @gotags: json:"attendanceTime"
+  int32 attendance_time = 6;
+  // 出勤时间
+  // @gotags: json:"attendanceAt"
+  string attendance_at = 7;
+  // 是否出勤
+  // @gotags: json:"isAttendance"
+  bool is_attendance = 8;
+  // 是否迟到
+  // @gotags: json:"isLate"
+  bool is_late = 9;
+  // 是否早退
+  // @gotags: isEarly
+  bool is_early = 10;
+  // 课程编号
+  // @gotags: json:"courseId,string"
+  int64 course_id = 11;
+  // 课程名字
+  // json:"courseName"
+  string course_name = 12;
+  // 课节名称
+  string name = 13;
+  // 授课时长 单位：分钟
+  int32 duration = 14;
+  // 上课时间
+  // @gotags: json:"classTime"
+  string class_time = 15;
+  // 上课时间排序字段
+  // @gotags: json:"classTimeSortField"
+  int64 class_time_sort_field = 16;
+  // 老师
+  vo.UserDetail teacher = 17;
+  // 助教
+  repeated vo.UserDetail assistants = 18;
+}

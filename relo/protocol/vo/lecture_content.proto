@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/lecture/content/type.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+// 讲次类容信息
+message LectureContent {
+  // 编号
+  // @gotags: json:"id,string"
+  int64 id = 2;
+  // 讲次编号
+  // @gotags: json:"lectureId,string"
+  int64 lecture_id = 3;
+  // 展示图片文件编号Id
+  // @gotags: json:"fileId" validate:"required,len=20"
+  string file_id = 4;
+  // 名称
+  // @gotags: json:"fileName" validate:"required"
+  string file_name = 5;
+  // 内容类型
+  // @gotags: default:"0" json:"type" validate:"required_with=0 1"
+  core.lecture.content.Type type = 6;
+  // 视频时长(单位秒)
+  int32 duration = 7;
+  // 创建时间
+  // @gotags: json:"createdAt"
+  string created = 8;
+  // 更新时间
+  // @gotags: json:"updatedAt"
+  string updated = 9;
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+import "relo/core/user/status.proto";
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+
+// 更新学校用户状态请求
+message SetStatusReq {
+  // 用户id
+  // @gotags:  json:"userId,string" validate:"required"
+  int64 user_id = 2;
+  // 角色id
+  // @gotags: json:"roleId,string"
+  int64 role_id = 3;
+  // 状态 (0-启用,1-停用)
+  // @gotags: json:"status" validate:"oneof=0 1"
+  relo.core.user.Status status = 4;
+}

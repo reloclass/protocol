@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.course;
+
+option go_package = "github.com/reloclass/core/course";
+
+
+// 课程类型
+enum Type {
+  // 未知
+  COURSE_TYPE_UNSPECIFIED = 0;
+
+  // 互动课
+  INTERACTIVE_CLASS = 1;
+  // 录播课
+  RECORD = 2;
+  // 公开课
+  PUBLIC = 4;
+}

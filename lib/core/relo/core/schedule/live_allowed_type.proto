@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package relo.core.schedule;
+
+option go_package = "github.com/reloclass/core/schedule";
+
+
+// 互动课是否允许直播
+enum LiveAllowedType {
+  // 未知
+  LIVE_ALLOWED_TYPE_UNSPECIFIED = 0;
+
+  // 不允许直播
+  NO = 1;
+  // 允许直播
+  YES = 2;
+}

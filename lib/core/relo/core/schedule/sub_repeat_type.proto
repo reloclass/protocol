@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.schedule;
+
+option go_package = "github.com/reloclass/core/schedule";
+
+
+// 重复子类型
+enum SubRepeatType {
+  // 未知
+  SUB_REPEAT_TYPE_UNSPECIFIED = 0;
+
+  // 重复次数
+  COUNT = 1;
+  // 结束时间
+  END_TIME = 2;
+  // 无限制
+  UNLIMITED = 3;
+}

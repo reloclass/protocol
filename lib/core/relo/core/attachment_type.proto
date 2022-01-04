@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package relo.core;
+
+option go_package = "github.com/reloclass/core";
+
+
+// 附件类型
+enum AttachmentType {
+  // 图片类型
+  PICTURE = 0;
+  // 录音类型
+  RECORDING = 1;
+  // 云盘资源
+  CLOUD_RESOURCE = 2;
+  // 本地文件资源
+  LOCAL_FILE = 3;
+  // 超链接资源
+  HYPER_LINK = 4;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package relo.core.record;
+
+option go_package = "github.com/reloclass/core/record";
+
+
+// RecordResult 录制任务结果
+message Result {
+  // 错误类型，只有请求出错的时候才会返回此字段
+  // @gotags: json:"ErrorCode"
+  string error_code = 2;
+  // 错误说明，只有请求出错的时候才会返回此字段
+  // @gotags: json:"ErrorMessage"
+  string error_message = 3;
+  // 录制视频⽂件列表
+  // @gotags: json:"Videos"
+  repeated Video videos = 4;
+}
+
+// 录制任务视频
+message Video  {
+  // 视频文件名称
+  // @gotags: json:"Filename"
+  string file_name = 2;
+  // 视频大小
+  // @gotags: json:"FileSize"
+  int64 file_size = 3;
+  // 视频文件链接
+  // @gotags: json:"FileURL"
+  string file_url = 4;
+}

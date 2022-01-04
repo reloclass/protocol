@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package relo.protocol.coursestudent;
+
+import "relo/protocol/vo/stutdent.proto";
+
+import "relo/protocol/vo/user_detail.proto";
+
+option go_package = "github.com/reloclass/protocol/coursestudent;coursestudent";
+
+// 分页获取课程学生请求
+message GetsByPagingReq {
+  // 当前页
+  // @gotags: default:"1" query:"page"
+  int32 page = 2;
+  // 每页大小
+  // @gotags: default:"20" query:"perPage"
+  int32 size = 3;
+  // 查询关键字
+  // @gotags: query:"keyword"
+  string keyword = 4;
+  // 排序规则
+  // @gotags: default:"desc" query:"sortOrder" validate:"oneof=desc DESC asc ASC"
+  string order = 5;
+  // 排序字段
+  // @gotags: default:"student_id" query:"sortField"
+  string sort = 6;
+
+
+  // 课程编号
+  // @gotags: param:"id" json:"courseId,string" validate:"required"`
+  int64 course_id = 7;
+}
+
+
+// 分页获取响应
+message GetsByPagingRsp {
+  // 总数
+  // @gotags: json:"totalNum"
+  int64 total_num = 2;
+  // 课程学生数据
+  repeated vo.Student items = 3;
+}
+
+
+// 获取课程所有学生请求
+message GetsByCourseReq {
+  // 课程编号
+  // @gotags: param:"id" json:"courseId,string" validate:"required"`
+  int64 course_id = 2;
+}
+
+// 获取课程所有学生响应
+message GetsByCourseRsp {
+  // 课程学生数据
+  repeated vo.UserDetail students = 3;
+}

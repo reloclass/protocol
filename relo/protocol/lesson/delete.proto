@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package relo.protocol.lesson;
+
+option go_package = "github.com/reloclass/protocol/lesson;lesson";
+
+
+// 删除课节请求
+message DeleteReq {
+  // 课节编号
+  // @gotags: param:"id"
+  int64 id = 2;
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package relo.protocol.user.rpc;
+
+import "relo/protocol/user/rpc/user.proto";
+
+option go_package = "github.com/reloclass/protocol/user/rpc;rpc";
+
+
+// 添加用户请求
+message AddReq{
+  // @gotags: json:"phone"
+  string phone = 1; // 手机号
+  // @gotags: json:"nickname"
+  string nickname = 2; // 昵称
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 3; // 密码
+  // @gotags:  json:"code"   validate:"omitempty"
+  string code = 4; // 验证码
+}
+
+message AddRsp{
+  // 是否新增
+  // @gotags: json:"newAdd"
+  bool new_add = 1;
+  // 用户
+  // @gotags: json:"user"
+  rpc.User user = 2;
+}

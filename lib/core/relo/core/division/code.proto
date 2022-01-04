@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.division;
+
+option go_package = "github.com/reloclass/core/division";
+
+
+// 地域Code
+enum Code {
+  // 未知
+  UNKNOWN = 0;
+
+  // 省份
+  PROVINCE = 1;
+  // 城市
+  CITY = 2;
+  // 全国
+  AREA = 3;
+}

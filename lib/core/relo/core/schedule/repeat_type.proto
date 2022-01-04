@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package relo.core.schedule;
+
+option go_package = "github.com/reloclass/core/schedule";
+
+
+// 重复类型
+enum RepeatType {
+  // 0 不重复
+  NONE = 0;
+  // 1 按年
+  YEAR = 1;
+  // 2 按月
+  MONTH = 2 ;
+  // 3 按日
+  DAY = 3;
+  // 4 按周
+  WEEK = 4;
+}

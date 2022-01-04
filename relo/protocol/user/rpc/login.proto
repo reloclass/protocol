@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package relo.protocol.user.rpc;
+
+import "relo/protocol/user/rpc/user.proto";
+
+option go_package = "github.com/reloclass/protocol/user/rpc;rpc";
+
+
+// 登录请求
+message LoginReq {
+  // 手机号
+  // @gotags: json:"phone" validate:"required,printascii,mobile"
+  string phone = 1;
+  // 密码
+  // @gotags: json:"password" validate:"required,printascii,min=8,max=30"
+  string password = 2;
+}
+
+// 登录响应
+message LoginRsp {
+  // 用户信息
+  // @gotags: json:"user"
+  User user = 1;
+}

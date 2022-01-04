@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package relo.core;
+
+option go_package = "github.com/reloclass/core";
+
+
+// 作业操作类型
+enum HomeworkOperateType {
+  // 保存
+  OPERATE_SAVE = 0;
+  // 提交
+  OPERATE_SUBMITTED = 1;
+  // 纠正
+  OPERATE_RECTIFY = 2;
+}

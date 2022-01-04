@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package relo.protocol.user;
+
+option go_package = "github.com/reloclass/protocol/user;user";
+
+// 更新学校用户请求
+message UpdateReq {
+  // 手机号
+  // @gotags: json:"phone"
+  string phone = 2;
+  // 昵称
+  // @gotags: json:"name"
+  string name = 3;
+}

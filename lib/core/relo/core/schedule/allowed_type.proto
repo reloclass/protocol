@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package relo.core.schedule;
+
+option go_package = "github.com/reloclass/core/schedule";
+
+
+// 课节允许允许类型
+enum AllowedType {
+  // 未知
+  ALLOWED_TYPE_UNSPECIFIED = 0;
+
+  // 课节内的学生
+  STUDENT_IN_COURSETIME = 1;
+  // 系统内的学生
+  STUDENT_IN_SYS = 2;
+  // 游客
+  TOURIST = 3;
+}

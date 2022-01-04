@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package relo.protocol.vo;
+
+import "relo/core/lesson/status.proto";
+import "relo/core/course/class_mode.proto";
+import "relo/core/schedule/allowed_type.proto";
+import "relo/core/schedule/record_type.proto";
+import "relo/core/schedule/live_allowed_type.proto";
+import "relo/core/schedule/video_dimension_type.proto";
+
+option go_package = "github.com/reloclass/protocol/vo;vo";
+
+
+message SuperviseLesson {
+  // 课节编号
+  // @gotags: json:"id,string"
+  int64 id = 2;
+  // 学校编号
+  // @gotags: json:"schoolId,string"
+  int64 school_id = 3;
+  // 课程计划
+  // @gotags: json:"courseScheduleId,string"
+  int64 course_schedule_id = 4;
+  // 课程编号
+  // @gotags: json:"courseId,string"
+  int64 course_id = 5;
+  // 主讲老师
+  // @gotags: json:"teacherId,string"
+  int64 teacher_id = 6;
+  // 课节名称
+  string name = 7;
+  // 上课时间
+  // @gotags: json:"classTime"
+  string class_time = 8;
+  // 授课时长 单位：分钟
+  int32 duration = 9;
+  // 课节状态
+  core.lesson.Status status = 10;
+  // 云视讯会议Id
+  // @gotags: json:"meetingId"
+  string meeting_id = 11;
+  // 云视讯会议No
+  // @gotags: json:"meetingNo,string"
+  uint64 meeting_no = 12;
+  // 组ID
+  // @gotags: json:"groupId,string"
+  int64 group_id = 13;
+  // 上课模式
+  // @gotags: json:"classMode"
+  core.course.ClassMode class_mode = 14;
+  // 允许类型
+  // @gotags: json:"allowedType"
+  core.schedule.AllowedType allowed_type = 15;
+  // 验证码
+  string captcha = 16;
+  // 录制操作类型
+  // @gotags: json:"recordType"
+  core.schedule.RecordType record_type = 17;
+  // 是否允许直播
+  // @gotags: json:"liveAllowedType"
+  core.schedule.LiveAllowedType live_allowed_type = 18;
+  // 视频质量
+  // @gotags: json:"videoDimension"
+  core.schedule.VideoDimensionType video_dimension = 19;
+  // 上台人数
+  // @gotags: json:"stageNumber"
+  int32 stage_number = 20;
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package relo.protocol.user.rpc;
+
+option go_package = "github.com/reloclass/protocol/user/rpc;rpc";
+
+
+// 用户信息
+message User {
+  // @gotags: json:"id,string"
+  int64 id = 1; // 用户id
+  // @gotags: json:"createdAt"
+  string created_at = 2; // 注册时间
+  // @gotags: json:"updatedAt"
+  string updated_at = 3; // 更新时间
+  // @gotags: json:"phone"
+  string phone = 4; // 手机号
+  // @gotags: json:"nickname"
+  string nickname = 5; // 昵称
+  // @gotags: json:"avatar"
+  string avatar = 6; // 头像
+  // @gotags: json:"sex"
+  int32 sex = 7; // 头像
+  // @gotags: json:"info"
+  string info = 8; // 介绍
+}
